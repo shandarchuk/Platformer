@@ -47,10 +47,10 @@ public class Enemy : MonoBehaviour
 
     public void FixedUpdate() 
     {
-        // двигаем dhfuf к точке, указываем стартовую позицию, и конечную
+        // двигаем врага к точке, указываем стартовую позицию, и конечную
         transform.position = Vector3.MoveTowards(transform.position, positions[currentTarget], speed); 
-        // если уже на позиции тогда
-        if(transform.position == positions[currentTarget]) 
+        // если уже на позиции тогда      
+        if(transform.position.x == positions[currentTarget].x) 
         {
             if(currentTarget < positions.Length-1)
             {
