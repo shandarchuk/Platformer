@@ -6,26 +6,51 @@ using UnityEngine.SceneManagement;
 public class Enemy : MonoBehaviour
 {
 
-    public float speed = 0.01f;
-    public Vector3[] positions;
-    public int count;
-    private int currentTarget = 0;
+    public float speed = 0.01f; // скорость
+    public Vector3[] positions; // позиции между которыми он двигается
+    
+    private int currentTarget = 0; // текущая позиция, для перемещения между позициями positions 
 
-    public GameObject tileMap;
+    public int count; // стоимость убитого врага, прибавляется к очкам
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public int maxHealth = 100; // максимальное здоровье
+    private int currentHealth; // текущее здоровье
+
+    public Animator animator; // компонент
+
+    public int atackDamage = 0; // урон
+
+    private Vector3 targetPositionEnemy; // позиция врага при отталкивании при нанесении урона
+    private Vector3 targetPositionPlayer; // позиция игрока при отталкивании при нанесении урона
+    public float repulsionRange = 0.8f; // дальность отталкивания
+
+    private void Start() {
+        currentHealth = maxHealth; 
     }
 
-    // Update is called once per frame
+    //получить урон 
+    public void TakeDamage(int damage)
+    {
+        animator.SetTrigger("Hurt");
+        currentHealth -= damage;    
+
+        if(currentHealth<=0)
+        {
+            Die();
+        }
+    }
+
+    void Die() 
+    {   
+        Destroy(gameObject); 
+    }
+
     public void FixedUpdate() 
     {
-        // двигаем объект к точке, указываем стартовую позицию, и конечную
+        // двигаем dhfuf к точке, указываем стартовую позицию, и конечную
         transform.position = Vector3.MoveTowards(transform.position, positions[currentTarget], speed); 
-
-        if(transform.position == positions[currentTarget]) // если уже на позиции тогда
+        // если уже на позиции тогда
+        if(transform.position == positions[currentTarget]) 
         {
             if(currentTarget < positions.Length-1)
             {
@@ -36,40 +61,32 @@ public class Enemy : MonoBehaviour
                 currentTarget = 0;
             }
         }
-
     }
 
-    private void OnCollisionEnter2D(Collision2D other) // если цепляет врага сбоку то игрок умирает, бокс колайдер №2, со всех сторон
-    {
+    // если цепляет врага то наносит урон
+    private void OnCollisionEnter2D(Collision2D other) 
+    {  
+
         if(other.gameObject.tag == "Player")
         {
-            Debug.Log("Игрок убит");
-            //Destroy(other.gameObject);
-            
-            SceneManager.LoadScene("Scene"); // загружаем первую сцену, нужно смотреть на жизни если закончились то на меню
+            other.gameObject.GetComponent<Player>().TakeDamage(atackDamage);
 
-
-            // при столкновении с врагом прыгает вверх и падает вниз      
-            /*
-            other.gameObject.GetComponent<Rigidbody2D>().AddForce(other.gameObject.GetComponent<Rigidbody2D>().transform.up * 6, ForceMode2D.Impulse);
-            other.gameObject.GetComponent<Rigidbody2D>().mass = 2f;
-            Destroy(gameObject);
-            tileMap.SetActive(false);
-            */
-
+            // отталкиваем врага от игрока, и игрока от врага
+            if(other.gameObject.transform.position.x > gameObject.transform.position.x)
+            {   
+                Debug.Log(targetPositionEnemy);
+                targetPositionEnemy = new Vector3(transform.position.x - repulsionRange, transform.position.y, transform.position.z);             
+                targetPositionPlayer = new Vector3(other.transform.position.x + repulsionRange, other.transform.position.y, other.transform.position.z);             
+            } 
+            else
+            {
+                Debug.Log(targetPositionEnemy);
+                targetPositionEnemy = new Vector3(transform.position.x + repulsionRange, transform.position.y, transform.position.z);
+                targetPositionPlayer = new Vector3(other.transform.position.x - repulsionRange, other.transform.position.y, other.transform.position.z);             
+            }
+            transform.position = Vector3.MoveTowards(transform.position, targetPositionEnemy, 5);
+            other.transform.position = Vector3.MoveTowards(transform.position, targetPositionPlayer, 5);       
         }    
     }
-
-    private void OnTriggerEnter2D(Collider2D other) // если цепляет врага сбоку то враг умирает бокс колайдер №1, сверху
-    {
-        if(other.gameObject.tag == "Player")
-        {
-            //Debug.Log("Враг убит");
-            Destroy(gameObject); // уничтожим врага
-            other.GetComponent<Player>().AddCoin(count); // добавим стоимость врага к моенткам
-            other.GetComponent<Player>().SpeedBonus(); // активируем бонус скорости
-        }   
-    }
-
 
 }

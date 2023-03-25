@@ -7,6 +7,10 @@ TagManager:
   - Start
   - Ground
   - Enemy
+  - Left
+  - Right
+  - Up
+  - Down
   layers:
   - Default
   - TransparentFX
@@ -14,7 +18,7 @@ TagManager:
   - 
   - Water
   - UI
-  - 
+  - Enemies
   - 
   - 
   - 

@@ -7,63 +7,53 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
 
-    public float speed, jumpForce, timerSpeed, timerSpeedMax, speedBonus;
-
-    private float speedStart;
-    private bool isGrounded;
+    public bool isGrounded;
     private Rigidbody2D rigidbody2d;
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     public int score;
-    public Text scoreText;
-    public int health = 5;
+    public Text scoreText; 
+    public int maxHealth = 100; // максимальное здоровье
+    private int currentHealth; // текущее здоровье
 
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
-        speedStart = speed; 
+        animator = GetComponent<Animator>(); 
+        currentHealth = maxHealth;
+    }
+
+    private void FixedUpdate()
+    {
+        
+        // нужно убрать     
+        Vector3 position = transform.position;
+
+        position.x += Input.GetAxis("Horizontal") * 0.1f; 
+
+        transform.position = position;
+        // нужно убрать...
         
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        // записываем координаты игрока
-        Vector3 position = transform.position;
-
-        position.x += Input.GetAxis("Horizontal") * speed; 
-
-        transform.position = position;
-
-        if(timerSpeed > 0)
-        {
-            speed = speedBonus;
-            timerSpeed--;
-        }
-        else
-        {
-            speed = speedStart;
-        }
-
-    }
-
     void Update() 
-    {
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded) // пробел
+    {   
+        // нужно убрать
+        if(Input.GetKeyDown(KeyCode.W) && isGrounded) // пробел
         {
             Jump();
         } 
+        // нужно убрать...
 
-        // при падении
+        // при падении загружаем сцену заново, нужно смотреть на жизни если закончились то на меню
         if(transform.position.y < -5.7f)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); // загружаем сцену заново, нужно смотреть на жизни если закончились то на меню
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  
         }
 
+        // нужно убрать
         if(Input.GetAxis("Horizontal") != 0)
         {
             if(Input.GetAxis("Horizontal") < 0)
@@ -81,43 +71,48 @@ public class Player : MonoBehaviour
         {
             animator.SetInteger("State", 0);    
         }
+        // нужно убрать
 
     }
 
-    private void Jump() // прыжок
+    // нужно убрать
+    public void Jump() // прыжок
     {
         if(isGrounded) // прыгать можно с поверхности
         {
             isGrounded = false;
-            rigidbody2d.AddForce(transform.up * jumpForce, ForceMode2D.Impulse);
+            rigidbody2d.AddForce(transform.up * 4f, ForceMode2D.Impulse);
+            animator.SetTrigger("Jump");
         }
 
     }
+    // нужно убрать...
     
-    public void OnCollisionEnter2D(Collision2D other) // при приземлении на поверхность после прыжка  
+    // при приземлении на поверхность после прыжка
+    public void OnCollisionEnter2D(Collision2D other)   
     {
         if(other.gameObject.tag == "Ground")
         {
             isGrounded = true;
-        }
-
-        
+        }      
     }
 
     public void AddCoin(int count)
     {
         score += count;
-        scoreText.text = score.ToString();
+        //scoreText.text = score.ToString();
     }
 
-    public void SpeedBonus()
+    public void TakeDamage(int damage)
     {
-        timerSpeed = timerSpeedMax;
-    }
-
-    public void ScaleBonus()
-    {
-        transform.localScale = new Vector3(1.5f,1.5f,1);
+        animator.SetTrigger("Hurt");
+        currentHealth -= damage;    
+        
+        if(currentHealth<=0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
+        }
+  
     }
 
 }
