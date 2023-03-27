@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3071434280300302132}
   - component: {fileID: 3071434280300302135}
   - component: {fileID: 3071434280300302128}
-  - component: {fileID: 5805171861118904189}
+  - component: {fileID: 3071434280556125270}
   m_Layer: 6
   m_Name: dwarf
   m_TagString: Enemy
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 2
   m_Sprite: {fileID: 643631364, guid: ba9dd1ef2c408fb48a521325be578a1b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -155,7 +155,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.92, y: 0.97}
   m_EdgeRadius: 0
---- !u!114 &5805171861118904189
+--- !u!114 &3071434280556125270
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -167,12 +167,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5bb5d80cd4677943b3dab17c2de6e87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0.01
+  speed: 0.03
   positions:
-  - {x: -5.5, y: -2.15, z: 0}
-  - {x: -14, y: -2.15, z: 0}
+  - {x: -24, y: -2.15, z: 0}
+  - {x: -16, y: -2.15, z: 0}
   count: 0
   maxHealth: 100
-  animator: {fileID: 0}
-  atackDamage: 0
+  animator: {fileID: 3071434280300302132}
+  atackDamage: 10
   repulsionRange: 0.8

@@ -5,16 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    public Sprite musicOn, musicOff;
+
     void Start()
     {
-        
+        OnOffMusic();    
     }
 
-    // Update is called once per frame
-    void Update()
+    void OnMouseDown()
     {
-        
+        transform.localScale = new Vector3(1.07f, 1.07f, 1.07f);
+    }
+
+    void OnMouseUp()
+    {
+        transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     public void Play(int index)
@@ -28,4 +34,33 @@ public class MainMenu : MonoBehaviour
         Application.Quit();
     }
 
+    private void OnMouseUpAsButton()
+    {
+     
+        if(gameObject.name == "Music") 
+        {
+            OnOffMusic();
+        }
+        
+    }
+    
+    // Музыка
+    private void OnOffMusic()
+    {
+        if (PlayerPrefs.GetString("Music") == "off")
+            {
+                GetComponent<SpriteRenderer>().sprite = musicOn;
+                PlayerPrefs.SetString("Music", "on");
+                Camera.main.GetComponent<AudioListener>().enabled = true;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = musicOff;
+                PlayerPrefs.SetString("Music", "off");
+                Camera.main.GetComponent<AudioListener>().enabled = false;
+            }
+    }
+
 }
+
+

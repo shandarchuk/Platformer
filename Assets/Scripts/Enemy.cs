@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System;
 
 public class Enemy : MonoBehaviour
 {
@@ -25,7 +26,7 @@ public class Enemy : MonoBehaviour
     public float repulsionRange = 0.8f; // дальность отталкивания
 
     private void Start() {
-        currentHealth = maxHealth; 
+        currentHealth = maxHealth;
     }
 
     //получить урон 
@@ -47,10 +48,11 @@ public class Enemy : MonoBehaviour
 
     public void FixedUpdate() 
     {
+      
         // двигаем врага к точке, указываем стартовую позицию, и конечную
         transform.position = Vector3.MoveTowards(transform.position, positions[currentTarget], speed); 
         // если уже на позиции тогда      
-        if(transform.position.x == positions[currentTarget].x) 
+        if(Convert.ToInt32(transform.position.x) == Convert.ToInt32(positions[currentTarget].x)) 
         {
             if(currentTarget < positions.Length-1)
             {
@@ -61,6 +63,7 @@ public class Enemy : MonoBehaviour
                 currentTarget = 0;
             }
         }
+
     }
 
     // если цепляет врага то наносит урон

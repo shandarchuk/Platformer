@@ -28,6 +28,7 @@ public class Buttons : MonoBehaviour
         }
         else if(gameObject.name == "A")
         {
+            animator.SetInteger("State", 0);
             Player.gameObject.GetComponent<PlayerAtack>().Atack();
         }
     }
@@ -55,29 +56,23 @@ public class Buttons : MonoBehaviour
      
         switch(gameObject.name) 
         {
-            case "Left":         
-
-                animator.SetInteger("State", 1);
+            case "Left":                   
                 position.x -= 1 * speed; 
                 spriteRenderer.flipX = true;
+                animator.SetInteger("State", 1);
                 
                 break;
             case "Right":
-
-                animator.SetInteger("State", 1);
                 position.x += 1 * speed;          
-                spriteRenderer.flipX = false;        
-
+                spriteRenderer.flipX = false;
+                animator.SetInteger("State", 1);
+                        
                 break;
-            case "Up":
-                
+            case "Up":           
                 animator.SetInteger("State", 0);
-
                 break;
-            case "Down":
-                
-                animator.SetInteger("State", 0);
-                
+            case "Down":        
+                animator.SetInteger("State", 0);              
                 break;
         }
 

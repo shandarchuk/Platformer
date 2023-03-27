@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-
     public bool isGrounded;
     private Rigidbody2D rigidbody2d;
     private SpriteRenderer spriteRenderer;
@@ -15,6 +14,10 @@ public class Player : MonoBehaviour
     public Text scoreText; 
     public int maxHealth = 100; // максимальное здоровье
     private int currentHealth; // текущее здоровье
+
+    public AudioSource audioSource;
+
+    public AudioClip[] audioClips;
 
 
     private void Start()
@@ -38,10 +41,12 @@ public class Player : MonoBehaviour
         
     }
 
+
+    
     void Update() 
     {   
         // нужно убрать
-        if(Input.GetKeyDown(KeyCode.W) && isGrounded) // пробел
+        if(Input.GetKeyDown(KeyCode.W) && isGrounded)
         {
             Jump();
         } 
@@ -58,13 +63,13 @@ public class Player : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal") < 0)
             {
-                spriteRenderer.flipX = true;
+                spriteRenderer.flipX = true;           
             } 
             else if(Input.GetAxis("Horizontal") > 0)
             {
                 spriteRenderer.flipX = false;
             }
-
+            
             animator.SetInteger("State", 1);
         }
         else
@@ -75,18 +80,22 @@ public class Player : MonoBehaviour
 
     }
 
-    // нужно убрать
-    public void Jump() // прыжок
+    // прыжок
+    public void Jump() 
     {
-        if(isGrounded) // прыгать можно с поверхности
+        // прыгать можно с поверхности
+        if(isGrounded) 
         {
+            // звук прыжка
+            PlayAudioClip(1);
+
             isGrounded = false;
             rigidbody2d.AddForce(transform.up * 4f, ForceMode2D.Impulse);
             animator.SetTrigger("Jump");
+            
         }
 
     }
-    // нужно убрать...
     
     // при приземлении на поверхность после прыжка
     public void OnCollisionEnter2D(Collision2D other)   
@@ -113,6 +122,14 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
         }
   
+    }
+
+
+    public void PlayAudioClip(int index, bool loop=false)
+    {
+        audioSource.clip = audioClips[index];
+        audioSource.loop = false;
+        audioSource.Play();   
     }
 
 }
