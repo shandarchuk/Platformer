@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &181130404
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 181130405}
-  m_Layer: 0
-  m_Name: AtackPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &181130405
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181130404}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.059, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1385786552640370694}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1385786552640370692
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,7 +15,6 @@ GameObject:
   - component: {fileID: 1385786552640370689}
   - component: {fileID: 1385786552640370690}
   - component: {fileID: 1385786552640370691}
-  - component: {fileID: 1261593270}
   - component: {fileID: 8238782884378693497}
   m_Layer: 0
   m_Name: Player
@@ -67,7 +35,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 181130405}
   - {fileID: 352013394882466739}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -187,11 +154,13 @@ MonoBehaviour:
   score: 0
   scoreText: {fileID: 0}
   maxHealth: 100
+  healthBar: {fileID: 0}
   audioSource: {fileID: 1385786552640370691}
   audioClips:
   - {fileID: 8300000, guid: 86bf3d29b0f66a147853d4321239b601, type: 3}
   - {fileID: 8300000, guid: 6d6c801a5a1afd64887fe00a155a9bc6, type: 3}
   - {fileID: 8300000, guid: 6ce471e48fe7a8b4397a0a42136e8d59, type: 3}
+  - {fileID: 8300000, guid: 984d469ef2470604990becd8e6f67d37, type: 3}
 --- !u!95 &1385786552640370690
 Animator:
   serializedVersion: 5
@@ -308,26 +277,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1261593270
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1385786552640370692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0cff5ca872b1f4d9880be32c13ce7a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 1385786552640370690}
-  atackPoint: {fileID: 352013394882466739}
-  atackRange: 1.5
-  enemyLayers:
-    serializedVersion: 2
-    m_Bits: 64
-  atackRate: 2
-  atackDamage: 30
 --- !u!114 &8238782884378693497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1385786552640370690}
-  atackPoint: {fileID: 181130405}
+  atackPoint: {fileID: 352013394882466739}
   atackRange: 1.5
   enemyLayers:
     serializedVersion: 2
@@ -377,5 +326,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1385786552640370694}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

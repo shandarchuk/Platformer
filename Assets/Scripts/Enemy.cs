@@ -75,19 +75,18 @@ public class Enemy : MonoBehaviour
             other.gameObject.GetComponent<Player>().TakeDamage(atackDamage);
 
             // отталкиваем врага от игрока, и игрока от врага
+            // только игрока
             if(other.gameObject.transform.position.x > gameObject.transform.position.x)
-            {   
-                Debug.Log(targetPositionEnemy);
-                targetPositionEnemy = new Vector3(transform.position.x - repulsionRange, transform.position.y, transform.position.z);             
+            {     
+                //targetPositionEnemy = new Vector3(transform.position.x - repulsionRange, transform.position.y, transform.position.z);             
                 targetPositionPlayer = new Vector3(other.transform.position.x + repulsionRange, other.transform.position.y, other.transform.position.z);             
             } 
             else
-            {
-                Debug.Log(targetPositionEnemy);
-                targetPositionEnemy = new Vector3(transform.position.x + repulsionRange, transform.position.y, transform.position.z);
+            {   
+                //targetPositionEnemy = new Vector3(transform.position.x + repulsionRange, transform.position.y, transform.position.z);
                 targetPositionPlayer = new Vector3(other.transform.position.x - repulsionRange, other.transform.position.y, other.transform.position.z);             
             }
-            transform.position = Vector3.MoveTowards(transform.position, targetPositionEnemy, 5);
+            //transform.position = Vector3.MoveTowards(transform.position, targetPositionEnemy, 5);
             other.transform.position = Vector3.MoveTowards(transform.position, targetPositionPlayer, 5);       
         }    
     }

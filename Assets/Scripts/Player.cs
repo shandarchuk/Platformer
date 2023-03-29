@@ -12,8 +12,10 @@ public class Player : MonoBehaviour
     private Animator animator;
     public int score;
     public Text scoreText; 
-    public int maxHealth = 100; // максимальное здоровье
-    private int currentHealth; // текущее здоровье
+    public float maxHealth = 100; // максимальное здоровье
+    private float currentHealth; // текущее здоровье
+
+    public Image healthBar; // жизни
 
     public AudioSource audioSource;
 
@@ -114,9 +116,14 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+
+        PlayAudioClip(3);
+        
         animator.SetTrigger("Hurt");
         currentHealth -= damage;    
         
+        HealthBar();
+
         if(currentHealth<=0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
@@ -130,6 +137,11 @@ public class Player : MonoBehaviour
         audioSource.clip = audioClips[index];
         audioSource.loop = false;
         audioSource.Play();   
+    }
+
+    public void HealthBar()
+    {
+        healthBar.fillAmount = currentHealth/100; 
     }
 
 }

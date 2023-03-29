@@ -174,5 +174,5 @@ MonoBehaviour:
   count: 0
   maxHealth: 100
   animator: {fileID: 3071434280300302132}
-  atackDamage: 10
+  atackDamage: 20
   repulsionRange: 0.8
