@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     public int score;
+    private int tempScore;
     public Text scoreText; 
     public float maxHealth = 100; // максимальное здоровье
     private float currentHealth; // текущее здоровье
@@ -28,6 +29,8 @@ public class Player : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>(); 
         currentHealth = maxHealth;
+        score = PlayerPrefs.GetInt("tempScore");
+        AddCoin(0);
     }
 
     private void FixedUpdate()
@@ -142,6 +145,18 @@ public class Player : MonoBehaviour
     public void HealthBar()
     {
         healthBar.fillAmount = currentHealth/100; 
+    }
+
+    private void OnOffMusic()
+    {
+        if (PlayerPrefs.GetString("Music") == "off")
+            {
+                Camera.main.GetComponent<AudioListener>().enabled = false;
+            }
+            else
+            {
+                Camera.main.GetComponent<AudioListener>().enabled = true;
+            }
     }
 
 }

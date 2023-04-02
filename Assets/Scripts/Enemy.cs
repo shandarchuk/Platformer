@@ -31,19 +31,20 @@ public class Enemy : MonoBehaviour
     }
 
     //получить урон 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, GameObject player)
     {
         animator.SetTrigger("Hurt");
         currentHealth -= damage;    
 
         if(currentHealth<=0)
         {
-            Die();
+            Die(player);
         }
     }
 
-    void Die() 
+    void Die(GameObject player) 
     {   
+        player.GetComponent<Player>().AddCoin(count);
         Destroy(gameObject); 
     }
 

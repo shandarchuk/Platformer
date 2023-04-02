@@ -10,7 +10,16 @@ public class MainMenu : MonoBehaviour
 
     void Start()
     {
-        OnOffMusic();    
+        if (PlayerPrefs.GetString("Music") == "off")
+            {
+                GetComponent<SpriteRenderer>().sprite = musicOff;
+                Camera.main.GetComponent<AudioListener>().enabled = false;
+            }
+            else
+            {
+                GetComponent<SpriteRenderer>().sprite = musicOn;
+                Camera.main.GetComponent<AudioListener>().enabled = true;
+            }    
     }
 
     void OnMouseDown()
@@ -25,6 +34,7 @@ public class MainMenu : MonoBehaviour
 
     public void Play(int index)
     {
+        PlayerPrefs.SetInt("tempScore",0);
         // загружаем сцену по индексу
         SceneManager.LoadScene(index);
     }

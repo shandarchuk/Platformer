@@ -42,9 +42,10 @@ public class PlayerAtack : MonoBehaviour
             foreach(Collider2D enemy in hitEnemies)   
             {           
                 // наносим урон
-                enemy.GetComponent<Enemy>().TakeDamage(atackDamage); 
+                print(gameObject);
+                enemy.GetComponent<Enemy>().TakeDamage(atackDamage, gameObject); 
 
-                // устанавливаем время слелдующей возможной атаки
+                // устанавливаем время следующей возможной атаки
                 nextAtackTime = Time.time + 1f / atackRate; 
 
             }

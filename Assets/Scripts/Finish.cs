@@ -9,7 +9,10 @@ public class Finish : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
+            int score = other.gameObject.GetComponent<Player>().score;
+            PlayerPrefs.SetInt("tempScore", score);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            
         }    
     }
 }
