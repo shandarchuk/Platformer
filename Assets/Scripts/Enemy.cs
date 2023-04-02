@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     
     private int currentTarget = 0; // текущая позиция, для перемещения между позициями positions 
 
-    public int count; // стоимость убитого врага, прибавляется к очкам
+    public int count = 10; // стоимость убитого врага, прибавляется к очкам
 
     public int maxHealth = 100; // максимальное здоровье
     private int currentHealth; // текущее здоровье
@@ -26,6 +26,7 @@ public class Enemy : MonoBehaviour
     public float repulsionRange = 0.8f; // дальность отталкивания
 
     private void Start() {
+        
         currentHealth = maxHealth;
     }
 
@@ -48,11 +49,11 @@ public class Enemy : MonoBehaviour
 
     public void FixedUpdate() 
     {
-      
-        // двигаем врага к точке, указываем стартовую позицию, и конечную
+        // двигаем объект к точке, стартовая позиция,конечная,скорость
         transform.position = Vector3.MoveTowards(transform.position, positions[currentTarget], speed); 
-        // если уже на позиции тогда      
-        if(Convert.ToInt32(transform.position.x) == Convert.ToInt32(positions[currentTarget].x)) 
+
+        // если уже на позиции тогда        
+        if(transform.position == positions[currentTarget]) 
         {
             if(currentTarget < positions.Length-1)
             {
@@ -64,7 +65,14 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        if (transform.position.y < -5)
+        {
+            Destroy(gameObject);
+        }
+
     }
+
+    
 
     // если цепляет врага то наносит урон
     private void OnCollisionEnter2D(Collision2D other) 
@@ -87,7 +95,7 @@ public class Enemy : MonoBehaviour
                 targetPositionPlayer = new Vector3(other.transform.position.x - repulsionRange, other.transform.position.y, other.transform.position.z);             
             }
             //transform.position = Vector3.MoveTowards(transform.position, targetPositionEnemy, 5);
-            other.transform.position = Vector3.MoveTowards(transform.position, targetPositionPlayer, 5);       
+            other.transform.position = Vector3.MoveTowards(transform.position, targetPositionPlayer, 5);
         }    
     }
 

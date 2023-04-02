@@ -43,9 +43,7 @@ public class Player : MonoBehaviour
         
     }
 
-
-    
-    void Update() 
+    private void Update() 
     {   
         // нужно убрать
         if(Input.GetKeyDown(KeyCode.W) && isGrounded)
@@ -57,7 +55,8 @@ public class Player : MonoBehaviour
         // при падении загружаем сцену заново, нужно смотреть на жизни если закончились то на меню
         if(transform.position.y < -5.7f)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  
+            SceneManager.LoadScene("Menu");  
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);  
         }
 
         // нужно убрать
@@ -111,7 +110,7 @@ public class Player : MonoBehaviour
     public void AddCoin(int count)
     {
         score += count;
-        //scoreText.text = score.ToString();
+        scoreText.text = "Total: " + score.ToString();
     }
 
     public void TakeDamage(int damage)
@@ -126,7 +125,8 @@ public class Player : MonoBehaviour
 
         if(currentHealth<=0)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
+            SceneManager.LoadScene("Menu");
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);    
         }
   
     }
