@@ -61,6 +61,7 @@ public class Buttons : MonoBehaviour
                 position.x -= 1 * speed; 
                 spriteRenderer.flipX = true;
                 animator.SetInteger("State", 1);
+                Player.transform.position = position;
                 break;
                 
                 
@@ -69,6 +70,7 @@ public class Buttons : MonoBehaviour
                 position.x += 1 * speed;          
                 spriteRenderer.flipX = false;
                 animator.SetInteger("State", 1);
+                Player.transform.position = position;
                 break;
                         
                 
@@ -76,8 +78,6 @@ public class Buttons : MonoBehaviour
                 animator.SetInteger("State", 0);
                 break;
         }
-
-        Player.transform.position = position;
 
     }
 
