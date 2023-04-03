@@ -35,11 +35,11 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+        float speed = 0.1f;
         // нужно убрать     
         Vector3 position = transform.position;
 
-        position.x += Input.GetAxis("Horizontal") * 0.1f; 
+        position.x += Input.GetAxis("Horizontal") * speed; 
 
         transform.position = position;
         // нужно убрать...
@@ -54,8 +54,6 @@ public class Player : MonoBehaviour
             Jump();
         } 
         // нужно убрать...
-
-        // при падении загружаем сцену заново, нужно смотреть на жизни если закончились то на меню
         if(transform.position.y < -5.7f)
         {
             SceneManager.LoadScene("Menu");  

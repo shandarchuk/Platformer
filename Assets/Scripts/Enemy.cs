@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
 
     public int atackDamage = 0; // урон
 
-    private Vector3 targetPositionEnemy; // позиция врага при отталкивании при нанесении урона
     private Vector3 targetPositionPlayer; // позиция игрока при отталкивании при нанесении урона
     public float repulsionRange = 0.8f; // дальность отталкивания
 
@@ -83,19 +82,15 @@ public class Enemy : MonoBehaviour
         {
             other.gameObject.GetComponent<Player>().TakeDamage(atackDamage);
 
-            // отталкиваем врага от игрока, и игрока от врага
             // только игрока
             if(other.gameObject.transform.position.x > gameObject.transform.position.x)
             {     
-                //targetPositionEnemy = new Vector3(transform.position.x - repulsionRange, transform.position.y, transform.position.z);             
                 targetPositionPlayer = new Vector3(other.transform.position.x + repulsionRange, other.transform.position.y, other.transform.position.z);             
             } 
             else
             {   
-                //targetPositionEnemy = new Vector3(transform.position.x + repulsionRange, transform.position.y, transform.position.z);
                 targetPositionPlayer = new Vector3(other.transform.position.x - repulsionRange, other.transform.position.y, other.transform.position.z);             
             }
-            //transform.position = Vector3.MoveTowards(transform.position, targetPositionEnemy, 5);
             other.transform.position = Vector3.MoveTowards(transform.position, targetPositionPlayer, 5);
         }    
     }

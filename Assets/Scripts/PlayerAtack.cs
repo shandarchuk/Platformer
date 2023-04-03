@@ -15,6 +15,10 @@ public class PlayerAtack : MonoBehaviour
 
     public int atackDamage = 0;
 
+    private Vector3 targetPositionEnemy; // позиция врага при отталкивании при нанесении урона
+
+    public float repulsionRange = 0.8f; // дальность отталкивания
+    
     void Update()
     {
         // нужно убрать
@@ -44,7 +48,15 @@ public class PlayerAtack : MonoBehaviour
                 // наносим урон
                 print(gameObject);
                 enemy.GetComponent<Enemy>().TakeDamage(atackDamage, gameObject); 
-
+                if (enemy.transform.position.x > gameObject.transform.position.x)
+                {
+                    targetPositionEnemy = new Vector3(enemy.transform.position.x + repulsionRange, enemy.transform.position.y, enemy.transform.position.z);             
+                }
+                else
+                {
+                    targetPositionEnemy = new Vector3(enemy.transform.position.x + repulsionRange, enemy.transform.position.y, enemy.transform.position.z);                 
+                }
+                enemy.transform.position = Vector3.MoveTowards(transform.position, targetPositionEnemy, 5);
                 // устанавливаем время следующей возможной атаки
                 nextAtackTime = Time.time + 1f / atackRate; 
 
