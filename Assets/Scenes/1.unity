@@ -1592,6 +1592,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1385786552640370694, guid: b7cf327b871ad80409fe444bdc0f9452, type: 3}
   m_PrefabInstance: {fileID: 1973950987}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1261593264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 935532241}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6454ed97d762c0c40a8a6e2c459071a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 935532241}
+  speed: 0.1
 --- !u!1 &1419627361
 GameObject:
   m_ObjectHideFlags: 0
@@ -2575,6 +2589,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8203705637986216177, guid: e0442cdc425a5fe4b86fecd79bfa9cd5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8203705637986216178, guid: e0442cdc425a5fe4b86fecd79bfa9cd5, type: 3}
       propertyPath: Player
       value: 
@@ -2587,6 +2605,14 @@ PrefabInstance:
       propertyPath: Player
       value: 
       objectReference: {fileID: 935532241}
+    - target: {fileID: 8203705639453189289, guid: e0442cdc425a5fe4b86fecd79bfa9cd5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.97
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203705639453189295, guid: e0442cdc425a5fe4b86fecd79bfa9cd5, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8203705639549276687, guid: e0442cdc425a5fe4b86fecd79bfa9cd5, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -2656,3 +2682,103 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &8203705639860546165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8203705639453189291, guid: e0442cdc425a5fe4b86fecd79bfa9cd5, type: 3}
+  m_PrefabInstance: {fileID: 8203705639860546163}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8203705639860546166 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8203705637986215949, guid: e0442cdc425a5fe4b86fecd79bfa9cd5, type: 3}
+  m_PrefabInstance: {fileID: 8203705639860546163}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8203705639860546167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203705639860546165}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1261593264}
+          m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+          m_MethodName: OnRightButtonDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1261593264}
+          m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+          m_MethodName: OnButtonUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &8203705639860546168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203705639860546166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1261593264}
+          m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+          m_MethodName: OnLeftButtonDown
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 3
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1261593264}
+          m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
+          m_MethodName: OnButtonUp
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

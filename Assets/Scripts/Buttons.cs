@@ -57,17 +57,21 @@ public class Buttons : MonoBehaviour
         switch(gameObject.name) 
         {
             case "Left":                   
+                
                 position.x -= 1 * speed; 
                 spriteRenderer.flipX = true;
                 animator.SetInteger("State", 1);
-                
                 break;
+                
+                
             case "Right":
+                
                 position.x += 1 * speed;          
                 spriteRenderer.flipX = false;
                 animator.SetInteger("State", 1);
-                        
                 break;
+                        
+                
             case "B":           
                 animator.SetInteger("State", 0);
                 break;
@@ -76,6 +80,5 @@ public class Buttons : MonoBehaviour
         Player.transform.position = position;
 
     }
-
 
 }
