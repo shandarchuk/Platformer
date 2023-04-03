@@ -21,7 +21,7 @@ public class Buttons : MonoBehaviour
         transform.localScale = new Vector3(1.07f, 1.07f, 1.07f);
         keyDown = true;
 
-        if(gameObject.name == "Up")
+        if(gameObject.name == "B")
         {
             animator.SetInteger("State", 0);
             Player.GetComponent<Player>().Jump();     
@@ -68,11 +68,8 @@ public class Buttons : MonoBehaviour
                 animator.SetInteger("State", 1);
                         
                 break;
-            case "Up":           
+            case "B":           
                 animator.SetInteger("State", 0);
-                break;
-            case "Down":        
-                animator.SetInteger("State", 0);              
                 break;
         }
 
