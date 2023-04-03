@@ -54,7 +54,7 @@ public class PlayerAtack : MonoBehaviour
                 }
                 else
                 {
-                    targetPositionEnemy = new Vector3(enemy.transform.position.x + repulsionRange, enemy.transform.position.y, enemy.transform.position.z);                 
+                    targetPositionEnemy = new Vector3(enemy.transform.position.x - repulsionRange, enemy.transform.position.y, enemy.transform.position.z);                 
                 }
                 enemy.transform.position = Vector3.MoveTowards(transform.position, targetPositionEnemy, 5);
                 // устанавливаем время следующей возможной атаки

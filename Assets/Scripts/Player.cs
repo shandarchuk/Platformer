@@ -132,7 +132,6 @@ public class Player : MonoBehaviour
   
     }
 
-
     public void PlayAudioClip(int index, bool loop=false)
     {
         audioSource.clip = audioClips[index];
