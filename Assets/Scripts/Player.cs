@@ -11,6 +11,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     public int score;
+    public float speed = 0.1f;
     private int tempScore;
     public Text scoreText; 
     public float maxHealth = 100; // максимальное здоровье
@@ -35,7 +36,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        float speed = 0.1f;
         // нужно убрать     
         Vector3 position = transform.position;
 
