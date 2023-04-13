@@ -2360,7 +2360,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1385786552640370689, guid: b7cf327b871ad80409fe444bdc0f9452, type: 3}
       propertyPath: speed
-      value: 0.5
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1385786552640370689, guid: b7cf327b871ad80409fe444bdc0f9452, type: 3}
       propertyPath: healthBar
